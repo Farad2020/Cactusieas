@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <None Include="Assets\Medieval_pixel_art_asset_FREE\pixel_snapping_README.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Faraby/Desktop/UnityProjs/Cactusieas/Cactusease/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

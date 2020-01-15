@@ -99,11 +99,11 @@ public class PlayerMovement : MonoBehaviour
     private void HandleLayers() {
         if (!IsGrounded())
         {
-            //animator.SetLayerWeight(1, 1);
+            animator.SetLayerWeight(1, 1);
         }
         else
         {
-            //animator.SetLayerWeight(1, 0);
+            animator.SetLayerWeight(1, 0);
         }
     }
 }
