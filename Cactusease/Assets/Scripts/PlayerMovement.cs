@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     Rigidbody2D rb;
-    //public Animator animator;
+    public Animator animator;
     public float runSpeed;
 
     [Range(1,20)]
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         // When falling down
         if (rb.velocity.y < 0) {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
-            //animator.SetBool("Landing",true);
+            animator.SetBool("Landing",true);
         }
         else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
         {
@@ -54,13 +54,13 @@ public class PlayerMovement : MonoBehaviour
         transform.position += runSpeed * movement * Time.fixedDeltaTime;
         //rb.velocity = new Vector2(runSpeed * move * Time.fixedDeltaTime, rb.velocity.y);
 
-        //animator.SetFloat("speed", Mathf.Abs(move));
+        animator.SetFloat("Speed", Mathf.Abs(move));
 
         //Jumping
         if (Input.GetButtonDown("Jump") && IsGrounded()) 
         {
             rb.velocity = Vector2.up * jumpVelocity;
-            //animator.SetTrigger("Jump");
+            animator.SetTrigger("Jump");
         }
 
         HandleLayers();
@@ -86,8 +86,8 @@ public class PlayerMovement : MonoBehaviour
                 for (int i = 0; i < colliders.Length; i++) {
                     if (colliders[i].gameObject != gameObject)
                     {
-                        //animator.ResetTrigger("Jump");
-                        //animator.SetBool("Landing", false);
+                        animator.ResetTrigger("Jump");
+                        animator.SetBool("Landing", false);
                         return true;
                     }
                 }
@@ -99,11 +99,11 @@ public class PlayerMovement : MonoBehaviour
     private void HandleLayers() {
         if (!IsGrounded())
         {
-            //animator.SetLayerWeight(1, 1);
+            animator.SetLayerWeight(1, 1);
         }
         else
         {
-            //animator.SetLayerWeight(1, 0);
+            animator.SetLayerWeight(1, 0);
         }
     }
 }
