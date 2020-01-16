@@ -43,21 +43,9 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
-    }
-
-    private void FixedUpdate()
-    {
-
-        //Walking
-        float move = Input.GetAxis("Horizontal");
-        Vector3 movement = new Vector3(runSpeed * move * Time.fixedDeltaTime, 0f, 0f);
-        transform.position += runSpeed * movement * Time.fixedDeltaTime;
-        //rb.velocity = new Vector2(runSpeed * move * Time.fixedDeltaTime, rb.velocity.y);
-
-        animator.SetFloat("Speed", Mathf.Abs(move));
 
         //Jumping
-        if (Input.GetButtonDown("Jump") && IsGrounded()) 
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = Vector2.up * jumpVelocity;
             animator.SetTrigger("Jump");
@@ -68,7 +56,8 @@ public class PlayerMovement : MonoBehaviour
         //Flip
 
         Vector2 characterScale = transform.localScale;
-        if (Input.GetAxis("Horizontal") < 0) {
+        if (Input.GetAxis("Horizontal") < 0)
+        {
             characterScale.x = -1 * Mathf.Abs(transform.localScale.x);
         }
         if (Input.GetAxis("Horizontal") > 0)
@@ -77,6 +66,18 @@ public class PlayerMovement : MonoBehaviour
         }
 
         transform.localScale = characterScale;
+    }
+
+    private void FixedUpdate()
+    {//Walking
+        float move = Input.GetAxis("Horizontal");
+        Vector3 movement = new Vector3(runSpeed * move * Time.fixedDeltaTime, 0f, 0f);
+        transform.position += runSpeed * movement * Time.fixedDeltaTime;
+        //rb.velocity = new Vector2(runSpeed * move * Time.fixedDeltaTime, rb.velocity.y);
+
+        animator.SetFloat("Speed", Mathf.Abs(move));
+
+
     }
 
     private bool IsGrounded() {
